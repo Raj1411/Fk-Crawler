@@ -18,7 +18,7 @@ headers = {
         "Sec-Fetch-Site": "same-site",
         "Sec-GPC": "1",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36",
-        # "X-User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 FKUA/website/42/website/Desktop"
+        "X-User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 FKUA/website/42/website/Desktop"
     }
 
 
@@ -27,7 +27,7 @@ def get_price(productID):
     session = requests.Session()
     session.headers.update(headers)
     response = session.get(url)
-    res = BeautifulSoup(response.content, 'html.parser')
+    res = BeautifulSoup(response.text, 'html.parser')
     price_ = res.find('div', {'class': 'Nx9bqj CxhGGd'}).text
     return price_.replace('₹', '')
 
