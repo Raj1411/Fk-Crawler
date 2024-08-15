@@ -24,8 +24,9 @@ headers = {
 
 def get_price(productID):
     url = f"https://www.flipkart.com/swiss-beauty-long-lasting-misty-finish-professional-makeup-fixer-spray-face-primer-70-ml/p/itm2a28f3ec66d53?pid={productID}"
-
-    response = requests.get(url,headers=headers)
+    session = requests.Session()
+    session.headers.update(headers)
+    response = session.get(url)
     res = BeautifulSoup(response.content, 'html.parser')
     price_ = res.find('div', {'class': 'Nx9bqj CxhGGd'}).text
     return price_.replace('₹', '')
